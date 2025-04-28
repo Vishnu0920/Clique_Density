@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Results - Dense Subgraph Computation</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="algorithm.html">Algorithms</a>
+        <a href="results.html">Results</a>
+    </nav>
+    <header>
+        <h1>Results and Performance</h1>
+    </header>
+
+    <section>
+        <h2>Dataset Statistics</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Dataset</th>
+                    <th>Nodes</th>
+                    <th>Edges</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Netscience</td>
+                    <td>1589</td>
+                    <td>2742</td>
+                </tr>
+                <tr>
+                    <td>Ca-HepTh</td>
+                    <td>9877</td>
+                    <td>51971</td>
+                </tr>
+                <tr>
+                    <td>As_Caida</td>
+                    <td>26475</td>
+                    <td>106762</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <section>
+        <h2>Algorithm Performance</h2>
+
+        <h3>Exact Algorithm Results</h3>
+        <ul>
+            <li>Tested on multiple datasets.</li>
+            <li>Correctly identified densest subgraphs.</li>
+            <li>Longer execution time, especially for large graphs.</li>
+        </ul>
+
+        <h3>CoreExact Algorithm Results</h3>
+        <ul>
+            <li>Faster execution due to core decomposition.</li>
+            <li>Scalable to large graphs with dense regions.</li>
+            <li>Equally accurate in identifying densest subgraphs.</li>
+        </ul>
+
+        <h3>Summary of Key Findings</h3>
+        <ul>
+            <li>CoreExact significantly reduces execution time.</li>
+            <li>Both algorithms validate densest subgraphs accurately.</li>
+            <li>Core decomposition is crucial for practical scaling.</li>
+        </ul>
+    </section>
+</body>
+</html>

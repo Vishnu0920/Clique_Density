@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Algorithms for Dense Subgraph Computation</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="algorithm.html">Algorithms</a>
+        <a href="results.html">Results</a>
+    </nav>
+    <header>
+        <h1>Algorithms Implemented</h1>
+    </header>
+
+    <section>
+        <h2>1) Exact Algorithm</h2>
+        <p><strong>Source:</strong> "Efficient Algorithms for Densest Subgraph Discovery" (Fang et al., 2019)</p>
+        <p><strong>Key Idea:</strong> Perform a binary search over density values. At each step, construct a flow network and use minimum s-t cut to validate feasible subgraphs.</p>
+        <p><strong>Steps:</strong></p>
+        <ul>
+            <li>Binary search on density values.</li>
+            <li>Build a flow network for each candidate density.</li>
+            <li>Use min s-t cut to check subgraph feasibility.</li>
+        </ul>
+        <p><strong>Time Complexity:</strong> O(n⋅(d−1 choose h−1) + (n|Λ| + min(n,|Λ|)^3) log n)</p>
+    </section>
+
+    <section>
+        <h2>2) CoreExact Algorithm</h2>
+        <p><strong>Source:</strong> Same paper, optimized version.</p>
+        <p><strong>Key Idea:</strong> Improve the Exact algorithm by performing (k,Ψ)-core decomposition to restrict the flow network only to dense regions.</p>
+        <p><strong>Advantages:</strong></p>
+        <ul>
+            <li>Reduces graph size before binary search.</li>
+            <li>Significantly faster in practice.</li>
+            <li>Especially beneficial for large graphs with high clustering.</li>
+        </ul>
+        <p><strong>Time Complexity:</strong> Similar worst-case to Exact, but faster in practice.</p>
+    </section>
+</body>
+</html>
