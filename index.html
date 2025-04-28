@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Computing Dense Subgraphs</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="algorithm.html">Algorithms</a>
+        <a href="results.html">Results</a>
+    </nav>
+
+    <header>
+        <h1>Computing Dense Subgraphs Using Network Flow</h1>
+        <p>Efficient techniques for finding densest subgraphs in graphs using network flow-based algorithms.</p>
+    </header>
+
+    <section>
+        <h2>1. Introduction</h2>
+        <p>This report discusses the key ideas and findings from the paper <strong>"Efficient Algorithms for Densest Subgraph Discovery"</strong> by Yixiang Fang and collaborators. The paper addresses the Densest Subgraph Discovery (DSD) problem, aiming to extract subgraphs with maximum density based on edge count or clique structures.</p>
+        <p>DSD appears across domains like social network analysis, biological systems, and database indexing. Traditional methods struggle with computational efficiency on large graphs.</p>
+        <p>To address this, the paper proposes innovative techniques using core decomposition, which significantly reduce search space and improve runtime performance. These algorithms demonstrate substantial speedups over previous methods.</p>
+    </section>
+
+    <section>
+        <h2>2. Problem Statement</h2>
+        <p>Given a graph <strong>G(V, E)</strong> where:</p>
+        <ul>
+            <li><strong>V</strong> = Set of vertices</li>
+            <li><strong>E</strong> = Set of edges</li>
+        </ul>
+        <p>The objective is to find a subgraph D ⊆ G that maximizes edge density using efficient flow-based algorithms.</p>
+    </section>
+
+    <section>
+        <h2>3. Algorithms Implemented</h2>
+        <p>We implemented and compared two approaches:</p>
+        <ul>
+            <li><strong>Exact Algorithm</strong> using binary search and flow networks.</li>
+            <li><strong>CoreExact Algorithm</strong> using (k,Ψ)-core decomposition for optimization.</li>
+        </ul>
+    </section>
+
+</body>
+</html>

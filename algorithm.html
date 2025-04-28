@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Algorithms for Dense Subgraph Computation</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="algorithm.html">Algorithms</a>
+        <a href="results.html">Results</a>
+    </nav>
+
+    <header>
+        <h1>Algorithms Implemented</h1>
+    </header>
+
+    <section>
+        <h2>Table 1: Notations and Meanings</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Notation</th>
+                    <th>Meaning</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>G(V, E)</td><td>A graph with vertex set V and edge set E</td></tr>
+                <tr><td>n, m</td><td>n = |V|, m = |E|</td></tr>
+                <tr><td>degG(v)</td><td>(Classical edge-based) degree of vertex v in G</td></tr>
+                <tr><td>d</td><td>The maximum (classical edge-based) degree of G</td></tr>
+                <tr><td>G[T]</td><td>A subgraph of G induced by vertex set T</td></tr>
+                <tr><td>Ψ(VΨ, EΨ)</td><td>An h-clique (vertex set: VΨ, edge set: EΨ)</td></tr>
+                <tr><td>degG(v, Ψ)</td><td>Clique-degree of vertex v in G with respect to Ψ</td></tr>
+                <tr><td>μ(S, Ψ)</td><td>Number of clique instances of Ψ in the graph S</td></tr>
+                <tr><td>ρ(G, Ψ)</td><td>h-clique-density of graph G with respect to an h-clique Ψ</td></tr>
+                <tr><td>D(VD, ED)</td><td>The CDS whose h-clique-density is ρopt</td></tr>
+                <tr><td>F(VF, EF)</td><td>A flow network with node set VF and edge set EF</td></tr>
+            </tbody>
+        </table>
+    </section>
+
+    <section>
+        <h2>Algorithm 1: Exact</h2>
+        <pre><code>Input: G(V, E), Ψ(VΨ, EΨ)
+Output: The CDS D(VD, ED)
+
+1. Initialize l ← 0, u ← max_v∈V degG(v, Ψ);
+2. Initialize Λ ← all instances of (h–1)-clique in G, D ← ∅;
+3. While u − l ≥ 1 / (n(n−1)) do:
+    4. α ← (l + u) / 2;
+    5. VF ← {s} ∪ V ∪ Λ ∪ {t}; // Build flow network
+    6. For each vertex v ∈ V:
+        7. Add edge s→v with capacity degG(v, Ψ);
+        8. Add edge v→t with capacity α * |VΨ|;
+    9. For each (h–1)-clique ψ ∈ Λ:
+        10. For each vertex v in ψ:
+            11. Add edge ψ→v with capacity +∞;
+    12. For each (h–1)-clique ψ ∈ Λ:
+        13. For each vertex v ∈ V:
+            14. If ψ and v form an h-clique:
+                15. Add edge v→ψ with capacity 1;
+    16. Find minimum s-t cut (S, T) from F(VF, EF);
+    17. If S = {s}:
+        18. u ← α;
+    19. Else:
+        20. l ← α;
+        21. D ← subgraph induced by S \ {s};
+22. Return D;
+</code></pre>
+
+        <h3>2.1 Algorithm 1: Exact - Explanation</h3>
+        <p>The Exact method solves DSD by binary searching on candidate densities, building flow networks at each guess, and checking feasibility with minimum cuts. Each vertex connects to source and sink based on clique participation. Although precise, network size limits scalability to large graphs.</p>
+    </section>
+
+    <section>
+        <h2>Algorithm 4: CoreExact</h2>
+        <pre><code>Input: G(V, E), Ψ(VΨ, EΨ)
+Output: The CDS D(VD, ED)
+
+1. Perform core decomposition using Algorithm 3;
+2. Locate the (k'', Ψ)-core using pruning criteria;
+3. Initialize C ← ∅, D ← ∅, U ← ∅, l ← ρ'', u ← kmax;
+4. Put all connected components of (k'', Ψ)-core into C;
+5. For each component C(VC, EC) ∈ C:
+    6. If l > k'' then C(VC, EC) ← C ∩ (dle, Ψ)-core;
+    7. Build flow network F(VF, EF) (lines 5-15 of Algorithm 1);
+    8. Find minimum s-t cut (S, T) from F(VF, EF);
+    9. If S = ∅ then continue;
+10. While u − l ≥ 1 / (|VC|(|VC|−1)) do:
+    11. α ← (l + u) / 2;
+    12. Build F(VF, EF) (lines 5-15 of Algorithm 1);
+    13. Find minimum s-t cut (S, T) from F(VF, EF);
+    14. If S = {s}:
+        15. u ← α;
+    16. Else:
+        17. If α > dle then remove some vertices from C;
+        18. l ← α;
+        19. U ← S \ {s};
+20. If ρ(G[U], Ψ) > ρ(D, Ψ) then D ← G[U];
+21. Return D;
+</code></pre>
+
+        <h3>2.2 Algorithm 4: CoreExact - Explanation</h3>
+        <p>CoreExact enhances Exact by isolating dense regions via (k,Ψ)-core decomposition first. It limits binary search and flow network construction to smaller dense subgraphs, greatly reducing computation while maintaining accuracy. Best suited for large graphs with sparse regions.</p>
+    </section>
+
+</body>
+</html>
