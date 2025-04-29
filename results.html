@@ -73,14 +73,37 @@
                 </tr>
             </thead>
             <tbody>
-                <tr><td>Netscience</td><td>(Leave blank)</td><td>(Leave blank)</td><td>(Leave blank)</td></tr>
-                <tr><td>Ca-HepTh</td><td>(Leave blank)</td><td>(Leave blank)</td><td>(Leave blank)</td></tr>
-                <tr><td>As_Caida</td><td>(Leave blank)</td><td>(Leave blank)</td><td>(Leave blank)</td></tr>
-                <tr><td>Yeast</td><td>(Leave blank)</td><td>(Leave blank)</td><td>(Leave blank)</td></tr>
-                <tr><td>As-733</td><td>(Leave blank)</td><td>(Leave blank)</td><td>(Leave blank)</td></tr>
+                <tr><td>Netscience</td><td>&lt;1</td><td>20</td><td>775.2</td></tr>
+                <tr><td>Ca-HepTh</td><td>&lt;1</td><td>32</td><td>1123.75</td></tr>
+                <tr><td>As_Caida</td><td>2</td><td>60</td><td>405.333</td></tr>
+                <tr><td>Yeast</td><td>&lt;1</td><td>32</td><td>85.125</td></tr>
+                <tr><td>As-733</td><td>&lt;1</td><td>7</td><td>3.71429</td></tr>
+            </tbody>
+        </table>
+    </section>
+
+    <section>
+        <h2>5. Conclusion</h2>
+
+        <p>Although both algorithms target the exact densest subgraph, their methodologies and efficiencies differ:</p>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Aspect</th>
+                    <th>Exact</th>
+                    <th>CoreExact</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>Search Space</td><td>Entire Graph</td><td>Reduced to dense cores</td></tr>
+                <tr><td>Memory Usage</td><td>High</td><td>Much lower</td></tr>
+                <tr><td>Preprocessing</td><td>None</td><td>Requires core decomposition</td></tr>
+                <tr><td>Scalability</td><td>Limited for large graphs</td><td>Efficient even for bigger graphs</td></tr>
             </tbody>
         </table>
 
+        <p>In summary, <strong>CoreExact</strong> offers a scalable refinement of the Exact method by intelligently narrowing the search space before applying expensive network flow computations.</p>
     </section>
 
 </body>
